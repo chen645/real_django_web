@@ -19,6 +19,8 @@ from mysite import views
 
 
 urlpatterns = [
+    path('addnote/',views.addnote),
+    path('note/',views.note),
     path('delete/<int:id>/',views.delete),
     path('logout/',views.mylogout),
     path('chart/',views.chart),

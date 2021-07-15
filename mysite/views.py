@@ -6,7 +6,7 @@ from django.http import JsonResponse
 import random
 from random import sample
 import datetime
-from mysite.models import Post ,Country, City
+from mysite.models import Post ,Country, City,Note
 from plotly.offline import plot
 import plotly.graph_objs as go
 import numpy as np
@@ -99,3 +99,15 @@ def delete(request, id):
         return redirect("/news/")
 
     return redirect("/news/")
+
+def note(request):
+    notes = Note.objects.all()
+    return render(request, "note.html", locals())
+
+def addnote(request):
+    if request.method =="POST":
+        title = request.POST["title"]
+        if len(title) >10:
+            note = Note(title=title)
+            note.save()
+    return redirect("/note/")
